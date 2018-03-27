@@ -1,0 +1,50 @@
+import Mariano.*
+
+describe "mariano y las golosinas" {
+	fixture {
+		mariano.comprar(alfajor)
+		mariano.comprar(chupetin)
+	}
+
+	test "comprar" {
+//		mariano.comprar(alfajor)
+//		mariano.comprar(chupetin)
+		assert.that(mariano.golosinas().contains(alfajor))
+		assert.that(mariano.golosinas().contains(chupetin))
+	}
+
+	test "probar golosinas" {
+//		mariano.comprar(alfajor)
+//		mariano.comprar(chupetin)
+		mariano.pobraTodasLasGolosinas()
+		assert.equals(240, alfajor.peso()) // el 80% del peso
+		assert.equals(6.3, chupetin.peso()) // 7 * 0.9
+	}
+	
+	test "alguna golosina no tiene tacc" {
+		assert.that(mariano.hayGolosinasSinTACC())
+	}
+	
+	test "no todas las golosinas tienen precio cuidado" {
+		assert.notThat(mariano.preciosCuidados())
+	}
+	
+	test "mariano devuelve chupetin cuando le pido golosina de naranja" {
+		assert.equals(chupetin, mariano.golosinaDeSabor("naranja"))
+	}
+	
+	test "mariano me duvuelve golosinas de chocolate" {
+		mariano.comprar(chocolatin)
+		assert.equals(#{chocolatin, alfajor}, mariano.golosinasDeSabor("chocolate"))
+	}
+	
+	test "mariano tiene golosinas de naranja y chocolate" {
+		mariano.comprar(chocolatin)
+		assert.equals(#{"naranja", "chocolate"}, mariano.sabores())
+	}
+	
+	test "desea" {
+		mariano.comprar(chocolatin)
+		assert.equals(#{caramelo}, mariano.golosinas)
+	}
+}
