@@ -45,6 +45,6 @@ describe "mariano y las golosinas" {
 	
 	test "desea" {
 		mariano.comprar(chocolatin)
-		assert.equals(#{caramelo}, mariano.golosinas)
+		assert.equals(#{caramelo}, mariano.golosinas())
 	}
 }
